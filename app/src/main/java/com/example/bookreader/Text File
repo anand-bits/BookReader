@@ -17,7 +17,11 @@ set NavigationItemSelectedListner():- used to add a clickListner to the items of
 7. A fragment represnt behaviour or a part of user interface in an activity.
 8. Any action that we prform to open or close a fragment is known as fragment transcation. Each fragment transcations is stored insidea backstack, which is maintained by activity.
 
-
+To be study...
+1.AppBar.
+2. Fragement.
+3.Scroll Flag
+4. addToBackStack
 
 
 

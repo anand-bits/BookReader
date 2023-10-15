@@ -31,16 +31,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        drawerLayout= findViewById(R.id.drawerLayout)
-        coordinateLayout=findViewById(R.id.coordinatorLayout)
-        toolbar=findViewById(R.id.toolbar)
-        frameLayout= findViewById(R.id.frame)
-        navigationView= findViewById(R.id.navigationView)
+        drawerLayout = findViewById(R.id.drawerLayout)
+        coordinateLayout = findViewById(R.id.coordinatorLayout)
+        toolbar = findViewById(R.id.toolbar)
+        frameLayout = findViewById(R.id.frame)
+        navigationView = findViewById(R.id.navigationView)
         setUpToolbar();
 
 //Hamburg Icon is now functional.
 
-        val actionBarDrawerToggle= ActionBarDrawerToggle(this@MainActivity,drawerLayout,R.string.open_drawer,R.string.close_drawer)
+        val actionBarDrawerToggle = ActionBarDrawerToggle(
+            this@MainActivity, drawerLayout, R.string.open_drawer, R.string.close_drawer
+        )
 
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
@@ -50,28 +52,45 @@ class MainActivity : AppCompatActivity() {
         //onOptionsItemSelected will work here
 
 
-
 //using the Lambda  Syntax , Internal methodn definationn ko cover kar rha hai,
 
         navigationView.setNavigationItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.dashboard -> {
-                    Toast.makeText(this@MainActivity, "Clicked on dashboard", Toast.LENGTH_SHORT)
-                        .show();
+                    //fragment manager handle working of fragment.
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame, DashboardFragment()).addToBackStack("DashBoard")
+                        .commit()
+
+                    drawerLayout.closeDrawers()
+
                 }
 
                 R.id.favourites -> {
-                    Toast.makeText(this@MainActivity, "Clicked on favourites", Toast.LENGTH_SHORT)
-                        .show();
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame, FavouritesFragment()).addToBackStack("Favourites")
+                        .commit()
+//addToBackStack will help to save the state while going back.
+
+                    drawerLayout.closeDrawers()
+
+
                 }
+
                 R.id.profile -> {
-                    Toast.makeText(this@MainActivity, "Clicked on profile", Toast.LENGTH_SHORT)
-                        .show();
+                    supportFragmentManager.beginTransaction().replace(R.id.frame, ProfileFragment())
+                        .addToBackStack("Profile").commit()
+
+                    drawerLayout.closeDrawers()
+
                 }
 
                 R.id.aboutApp -> {
-                    Toast.makeText(this@MainActivity, "Clicked on aboutapp", Toast.LENGTH_SHORT)
-                        .show();
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame, AboutAppFragment()).addToBackStack("About App").commit()
+
+                    drawerLayout.closeDrawers()
+
                 }
 
 
@@ -85,15 +104,11 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-
-
     }
 
-    fun setUpToolbar()
-    {
+    fun setUpToolbar() {
         setSupportActionBar(toolbar)
-        supportActionBar?.title= "Toolbar Tittle"
+        supportActionBar?.title = "Toolbar Tittle"
         supportActionBar?.setHomeButtonEnabled(true)
 
         //This line enables the "home" button, which is often represented as an arrow pointing to the left (commonly used for navigation back to the previous screen).
@@ -103,13 +118,12 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //This line sets whether the "home" button should be displayed as an "up" indicator (a left-facing arrow) in the app bar.
-    // When you set this to true, it shows the "up" indicator, indicating that the current screen is a subpage or detail view that can be navigated back to the parent or main screen.
+        // When you set this to true, it shows the "up" indicator, indicating that the current screen is a subpage or detail view that can be navigated back to the parent or main screen.
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id= item.itemId;
-        if(id==android.R.id.home)
-        {
+        val id = item.itemId;
+        if (id == android.R.id.home) {
             drawerLayout.openDrawer(GravityCompat.START)
 
         }
