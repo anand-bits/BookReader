@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var toolbar: Toolbar
     lateinit var frameLayout: FrameLayout
     lateinit var navigationView: NavigationView
+    var previousMenuItem:MenuItem?=null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity() {
         frameLayout = findViewById(R.id.frame)
         navigationView = findViewById(R.id.navigationView)
         setUpToolbar();
+        openDashboard();
+
 
 //Hamburg Icon is now functional.
 
@@ -55,12 +59,23 @@ class MainActivity : AppCompatActivity() {
 //using the Lambda  Syntax , Internal methodn definationn ko cover kar rha hai,
 
         navigationView.setNavigationItemSelectedListener {
+            if(previousMenuItem!=null)
+            {
+                previousMenuItem?.isChecked=false
+
+            }
+            it.isCheckable=true
+            it.isChecked=true
+            previousMenuItem=it
+
             when (it.itemId) {
                 R.id.dashboard -> {
                     //fragment manager handle working of fragment.
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, DashboardFragment()).addToBackStack("DashBoard")
+                        .replace(R.id.frame, DashboardFragment())
                         .commit()
+                    supportActionBar?.title= "DashBoard"
+
 
                     drawerLayout.closeDrawers()
 
@@ -68,9 +83,10 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.favourites -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, FavouritesFragment()).addToBackStack("Favourites")
+                        .replace(R.id.frame, FavouritesFragment())
                         .commit()
-//addToBackStack will help to save the state while going back.
+                    supportActionBar?.title= "Favourites"
+                    //addToBackStack will help to save the state while going back.
 
                     drawerLayout.closeDrawers()
 
@@ -78,8 +94,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.profile -> {
-                    supportFragmentManager.beginTransaction().replace(R.id.frame, ProfileFragment())
-                        .addToBackStack("Profile").commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.frame, ProfileFragment()).commit()
+
+                    supportActionBar?.title= "Profile"
 
                     drawerLayout.closeDrawers()
 
@@ -87,7 +104,9 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.aboutApp -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame, AboutAppFragment()).addToBackStack("About App").commit()
+                        .replace(R.id.frame, AboutAppFragment())
+                        .commit()
+                    supportActionBar?.title= "About App"
 
                     drawerLayout.closeDrawers()
 
@@ -129,6 +148,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+    // built function for show Dashboard while starting the  app.
+
+    fun openDashboard()
+    {
+        val fragment= DashboardFragment()
+        val transaction= supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame,fragment)
+        transaction.commit()
+        supportActionBar?.title="DashBoard"
+        navigationView.setCheckedItem(R.id.dashboard)
+
+    }
+    override fun onBackPressed() {
+        val frag = supportFragmentManager.findFragmentById(R.id.frame)
+        when (frag) {
+            !is DashboardFragment -> openDashboard()
+
+            else -> super.onBackPressed()
+
+        }
     }
 
 }
