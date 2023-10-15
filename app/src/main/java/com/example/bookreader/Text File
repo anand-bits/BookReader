@@ -1,0 +1,25 @@
+setOnclickListner():- used to add a click listner on a button
+set NavigationItemSelectedListner():- used to add a clickListner to the items of the navigation drawer.
+
+//Fragment
+
+1.a screen is complete activity so u cant add more than one activity .
+2.As the whatspp ,Green part is not changing , it means they are constant for each page.
+3.instead of adding activity we will add fragment.
+
+// Advantages of fragments
+1.It take up lesser ram than an activity . Hence , the app works fatser with fragments.
+2. They are reusable across multiple activites.
+3.  Fragemnet have indepent Lifecycle.
+4. when the activity is not active than Life cycle of fragment will be Activity Life cycle.
+5.A fragment is a modular section of ann activity , which hase its own Lifecycle, receives its own user inputs due to the user indirecet independtly.
+6.A fragment is part of user interface of activity.
+7. A fragment represnt behaviour or a part of user interface in an activity.
+8. Any action that we prform to open or close a fragment is known as fragment transcation. Each fragment transcations is stored insidea backstack, which is maintained by activity.
+
+
+
+
+
+
+

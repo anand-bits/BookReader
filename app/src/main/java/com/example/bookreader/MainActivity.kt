@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
@@ -14,6 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
+
     //lateinit indicate that a non-nullable property will be initialized at a later point in code.
     // Coordinator Layout:- A cordinator Layout is a super-powered frame layout which is used when there are multiple
     // interaction between the Views. For example , in our situation, we will use it to manage the interactions between the navigation drawer,toolbar and the frame layout.
@@ -46,6 +48,41 @@ class MainActivity : AppCompatActivity() {
 
         //we cant add clickListner in ActionBar so we have another way for adding the  ClickListner
         //onOptionsItemSelected will work here
+
+
+
+//using the Lambda  Syntax , Internal methodn definationn ko cover kar rha hai,
+
+        navigationView.setNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.dashboard -> {
+                    Toast.makeText(this@MainActivity, "Clicked on dashboard", Toast.LENGTH_SHORT)
+                        .show();
+                }
+
+                R.id.favourites -> {
+                    Toast.makeText(this@MainActivity, "Clicked on favourites", Toast.LENGTH_SHORT)
+                        .show();
+                }
+                R.id.profile -> {
+                    Toast.makeText(this@MainActivity, "Clicked on profile", Toast.LENGTH_SHORT)
+                        .show();
+                }
+
+                R.id.aboutApp -> {
+                    Toast.makeText(this@MainActivity, "Clicked on aboutapp", Toast.LENGTH_SHORT)
+                        .show();
+                }
+
+
+            }
+
+
+
+
+            return@setNavigationItemSelectedListener true;
+
+        }
 
 
 
