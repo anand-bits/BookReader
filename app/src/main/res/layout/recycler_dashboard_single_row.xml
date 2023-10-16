@@ -5,6 +5,7 @@
     android:layout_height="140dp"
     android:orientation="horizontal"
     android:background="#ffffff"
+    android:id="@+id/llContent"
     android:weightSum="6">
 
     <!--The weight sum property is used to divide the layout into
