@@ -23,6 +23,7 @@ To be study...
 3.Scroll Flag
 4. addToBackStack
 
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> connectivity status whether is the connectd or not
 
 
 

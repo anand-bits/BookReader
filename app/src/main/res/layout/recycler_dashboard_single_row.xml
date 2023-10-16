@@ -5,6 +5,7 @@
     android:layout_height="140dp"
     android:orientation="horizontal"
     android:background="#ffffff"
+    android:id="@+id/llContent"
     android:weightSum="6">
 
     <!--The weight sum property is used to divide the layout into
@@ -21,7 +22,8 @@
         android:layout_width="0dp"
         android:layout_height="110dp"
         android:src="@mipmap/ic_launcher"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        android:scaleType="centerCrop"/>
 
     <RelativeLayout
         android:layout_weight="3.3"
