@@ -4,14 +4,20 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookreader.R
+import com.example.bookreader.model.Book
 
-class DashboardRecyclerAdapter(val context: Context, val itemList:ArrayList<String>) :RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>(){
+class DashboardRecyclerAdapter(val context: Context, val itemList:ArrayList<Book>) :RecyclerView.Adapter<DashboardRecyclerAdapter.DashboardViewHolder>(){
 
     class DashboardViewHolder(view:View):RecyclerView.ViewHolder(view){
-        val textView:TextView=view.findViewById(R.id.txtBookName)
+        var txtBookName:TextView=view.findViewById(R.id.txtBookName)
+        val txtBookAuthorName:TextView=view.findViewById(R.id.txtBookAuthor)
+        val txtBookPrice:TextView=view.findViewById(R.id.txtBookPrice)
+        val txtBookRating:TextView=view.findViewById(R.id.txtBookRating);
+        val imgBookImage:ImageView=view.findViewById(R.id.imgBookImage);
 
     }
 
@@ -28,8 +34,13 @@ class DashboardRecyclerAdapter(val context: Context, val itemList:ArrayList<Stri
     }
 
     override fun onBindViewHolder(holder: DashboardViewHolder, position: Int) {
-        val text= itemList[position]
-        holder.textView.text=text;
+       val book= itemList[position]
+        holder.txtBookName.text=book.bookName
+        holder.txtBookAuthorName.text= book.bookAuthor
+        holder.txtBookPrice.text= book.bookCost
+        holder.txtBookRating.text=book.bookRating
+        holder.imgBookImage.setImageResource(book.bookImage)
+
 
     }
 }

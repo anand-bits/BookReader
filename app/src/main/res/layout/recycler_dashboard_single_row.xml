@@ -21,7 +21,8 @@
         android:layout_width="0dp"
         android:layout_height="110dp"
         android:src="@mipmap/ic_launcher"
-        android:padding="5dp"/>
+        android:padding="5dp"
+        android:scaleType="centerCrop"/>
 
     <RelativeLayout
         android:layout_weight="3.3"
