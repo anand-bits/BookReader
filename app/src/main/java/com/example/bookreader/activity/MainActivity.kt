@@ -1,4 +1,4 @@
-package com.example.bookreader
+package com.example.bookreader.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -6,12 +6,15 @@ import androidx.appcompat.widget.Toolbar
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.FrameLayout
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.bookreader.R
+import com.example.bookreader.fragment.AboutAppFragment
+import com.example.bookreader.fragment.DashboardFragment
+import com.example.bookreader.fragment.FavouritesFragment
+import com.example.bookreader.fragment.ProfileFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {

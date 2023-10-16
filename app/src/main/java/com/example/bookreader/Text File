@@ -1,42 +1,29 @@
 setOnclickListner():- used to add a click listner on a button
-setNavigationItemSelectedListner():- used to add a clickListner to the items of the navigation drawer.
+set NavigationItemSelectedListner():- used to add a clickListner to the items of the navigation drawer.
 
 //Fragment
 
-1. A screen is complete activity, so you can't add more than one activity.
-2. As in WhatsApp, the green part is not changing, which means they are constant for each page.
-3. Instead of adding an activity, we will add a fragment.
+1.a screen is complete activity so u cant add more than one activity .
+2.As the whatspp ,Green part is not changing , it means they are constant for each page.
+3.instead of adding activity we will add fragment.
 
-Advantages of fragments:
+// Advantages of fragments
+1.It take up lesser ram than an activity . Hence , the app works fatser with fragments.
+2. They are reusable across multiple activites.
+3.  Fragemnet have indepent Lifecycle.
+4. when the activity is not active than Life cycle of fragment will be Activity Life cycle.
+5.A fragment is a modular section of ann activity , which hase its own Lifecycle, receives its own user inputs due to the user indirecet independtly.
+6.A fragment is part of user interface of activity.
+7. A fragment represnt behaviour or a part of user interface in an activity.
+8. Any action that we prform to open or close a fragment is known as fragment transcation. Each fragment transcations is stored insidea backstack, which is maintained by activity.
 
-1. They take up less RAM than an activity, so the app works faster with fragments.
-2. They are reusable across multiple activities.
-3. Fragments have an independent lifecycle.
-4. When the activity is not active, the lifecycle of the fragment will be the activity lifecycle.
-5. A fragment is a modular section of an activity, which has its own lifecycle, receives its own user inputs due to the user indirectly independently.
-6. A fragment is part of the user interface of an activity.
-7. A fragment represents behavior or a part of the user interface in an activity.
-8. Any action that we perform to open or close a fragment is known as a fragment transaction. Each fragment transaction is stored inside a backstack, which is maintained by the activity.
+To be study...
+1.AppBar.
+2. Fragement.
+3.Scroll Flag
+4. addToBackStack
 
-To study...
-1. AppBar.
-2. Fragment.
-3. Scroll Flag.
-4. addToBackStack.
-5. List.
-6. RecyclerView.
 
-## Recycler View
-1.Layout Maneger:- Manange the layout and set the layout of data view. How the Item will displayed will be managed By The Layout Manager.
-Android  provide two Layout Manager.
 
-a) LinearLayOut Manager
-b) grid LayOut manager.
-
-2. View Holder:-
-View Holder is the responsible for holding this view which is the same for each item of the list.
-3. Adapter:- the Adpater is responsible for creating the View that the ViewHolder Holds.
-It also binds yhe view With the data.
-It also act bridges between Layout Manager and View
 
 
