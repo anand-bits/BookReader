@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,29 +26,13 @@ class DashboardFragment : Fragment() {
     lateinit var recyclerDashboard: RecyclerView
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var btnCheckinternet: Button
+   val bookInfoList = arrayListOf<Book>()
 
 
 // You now have a list of 10 book titles in the 'bookList' ArrayList.
 
     lateinit var recylerAdapter: DashboardRecyclerAdapter
-    val bookInfoList = arrayListOf<Book>(
-        Book("P.S. I love You", "Cecelia Ahern", "Rs. 299", "4.5", R.drawable.ps_ily),
-        Book("The Great Gatsby", "F. Scott Fitzgerald", "Rs. 399", "4.1", R.drawable.great_gatsby),
-        Book("Anna Karenina", "Leo Tolstoy", "Rs. 199", "4.3", R.drawable.anna_kare),
-        Book("Madame Bovary", "Gustave Flaubert", "Rs. 500", "4.0", R.drawable.madame),
-        Book("War and Peace", "Leo Tolstoy", "Rs. 249", "4.8", R.drawable.war_and_peace),
-        Book("Lolita", "Vladimir Nabokov", "Rs. 349", "3.9", R.drawable.lolita),
-        Book("Middlemarch", "George Eliot", "Rs. 599", "4.2", R.drawable.middlemarch),
-        Book(
-            "The Adventures of Huckleberry Finn",
-            "Mark Twain",
-            "Rs. 699",
-            "4.5",
-            R.drawable.adventures_finn
-        ),
-        Book("Moby-Dick", "Herman Melville", "Rs. 499", "4.5", R.drawable.moby_dick),
-        Book("The Lord of the Rings", "J.R.R Tolkien", "Rs. 749", "5.0", R.drawable.lord_of_rings)
-    )
+
 
 
     override fun onCreateView(
@@ -95,34 +80,68 @@ class DashboardFragment : Fragment() {
 
 
 
-        layoutManager = LinearLayoutManager(activity)
-        recylerAdapter = DashboardRecyclerAdapter(activity as Context, bookInfoList)
-        recyclerDashboard.adapter = recylerAdapter
-        recyclerDashboard.layoutManager = layoutManager
-        val itemDecoration =
-            DividerItemDecoration(recyclerDashboard.context, LinearLayoutManager.VERTICAL)
-        recyclerDashboard.addItemDecoration(itemDecoration)
 
         val queue = Volley.newRequestQueue(activity as Context)
 
-        val url = "http;//13.235.250.119/v1/book/fetch_books/"
+        val url = "http://13.235.250.119/v1/book/fetch_books/"
 
         val jsonObjectRequest =
             object : JsonObjectRequest(Method.GET, url, null, Response.Listener {
 
 // Here we will handle the  response.
 
+                val success=it.getBoolean("success")
+println(success);
+                if(success)
+                {
+                   // println("Success ${it}")
+                    val data= it.getJSONArray("data")
+                    for(i in 0 until data.length())
+                    {
+                        val bookJsonObject= data.getJSONObject(i)
+                        val bookObject= Book(
+                            bookJsonObject.getString("book_id"),
+                            bookJsonObject.getString("name"),
+                            bookJsonObject.getString("author"),
+                            bookJsonObject.getString("rating"),
+                            bookJsonObject.getString("price"),
+                            bookJsonObject.getString("image")
+
+
+                        )
+
+                        bookInfoList.add(bookObject)
+                        println(bookInfoList.size)
+
+                        layoutManager = LinearLayoutManager(activity)
+                        recylerAdapter = DashboardRecyclerAdapter(activity as Context, bookInfoList)
+                        recyclerDashboard.adapter = recylerAdapter
+                        recyclerDashboard.layoutManager = layoutManager
+                        val itemDecoration =
+                            DividerItemDecoration(recyclerDashboard.context, LinearLayoutManager.VERTICAL)
+                        recyclerDashboard.addItemDecoration(itemDecoration)
+                    }
+
+                }
+                else
+                {
+                    Toast.makeText(activity as Context,"Some error Occured!!",Toast.LENGTH_SHORT).show()
+
+                }
+
             }, Response.ErrorListener {
+
 
             }) {
                 override fun getHeaders(): MutableMap<String, String> {
-                    val headers= HashMap<String,String>()
-                    headers["Content-Type"]="application/json"
-                    headers["token"]="be4cdec1ce786a"
+                    val headers = HashMap<String, String>()
+                    headers["Content-Type"] = "application/json"
+                    headers["token"] = "be4cdec1ce786a"
                     return headers
                 }
             }
-
+        println("reached here")
+ queue.add(jsonObjectRequest)
         return view
     }
 
