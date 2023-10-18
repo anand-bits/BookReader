@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
+
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="#ffffff"
+    android:layout_margin="6dp"
+    app:cardCornerRadius="4dp">
+
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:orientation="horizontal"
@@ -8,13 +18,7 @@
     android:id="@+id/llContent"
     android:weightSum="6">
 
-    <!--The weight sum property is used to divide the layout into
-    different parts and then giving each layout a particular weight
-    gives it that amount of space on the screen-->
 
-
-    <!--Since each parent layout will have a specific weight, we need
-    not give any width to those layout-->
 
     <ImageView
         android:layout_weight="1.5"
@@ -61,9 +65,7 @@
     </RelativeLayout>
 
 
-    <!--Many times we see that texts have an image along with them to
-    their right or left. This is added with the help of the
-    drawableLeft (or drawableRight and so on) attribute-->
+
 
     <TextView
         android:id="@+id/txtBookRating"
@@ -81,3 +83,4 @@
     </TextView>
 
 </LinearLayout>
+</androidx.cardview.widget.CardView>
