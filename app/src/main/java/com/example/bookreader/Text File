@@ -25,6 +25,14 @@ To be study...
 
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> connectivity status whether is the connectd or not
 
+Database
+Room persistence Library instead of SQLitr
+
+
+Disadvantage of Sqlite
+1. For short data we need To type for lot of code.
+Its dont verify at the compile time.
+
 
 
 
