@@ -1,6 +1,7 @@
 package com.example.bookreader.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookreader.R
+import com.example.bookreader.activity.DescriptionActivity
 import com.example.bookreader.model.Book
 import com.squareup.picasso.Picasso
 
@@ -48,7 +50,10 @@ class DashboardRecyclerAdapter(val context: Context, val itemList:ArrayList<Book
         Picasso.get().load(book.bookImage).into(holder.imgBookImage)
 
         holder.llContent.setOnClickListener {
-            Toast.makeText(context,"Clicked on ${holder.txtBookName.text}",Toast.LENGTH_LONG).show()
+            val intent=Intent(context,DescriptionActivity::class.java)
+            intent.putExtra("book_id",book.bookId)
+            context.startActivity(intent)
+
 
 
         }
