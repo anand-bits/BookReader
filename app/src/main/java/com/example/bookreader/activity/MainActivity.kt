@@ -15,6 +15,7 @@ import com.example.bookreader.fragment.AboutAppFragment
 import com.example.bookreader.fragment.DashboardFragment
 import com.example.bookreader.fragment.FavouritesFragment
 import com.example.bookreader.fragment.ProfileFragment
+import com.facebook.stetho.Stetho
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         frameLayout = findViewById(R.id.frame)
         navigationView = findViewById(R.id.navigationView)
         setUpToolbar();
+        Stetho.initializeWithDefaults(this)
         openDashboard();
 
 
