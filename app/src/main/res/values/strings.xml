@@ -14,4 +14,6 @@
     <string name="profile_fragment">Profile Fragment</string>
     <string name="about_app_fragment">About App Fragment\n</string>
     <string name="dashboard_fragment">DashBoard fragment\n</string>
+    <string name="action_sort">Sort\n</string>
+    <string name="about_me">My name is Anand Kumar. I have created this app for learning purposes. Currently, I am pursuing a Master\'s in Computer Science from BITS Pilani</string>
 </resources>

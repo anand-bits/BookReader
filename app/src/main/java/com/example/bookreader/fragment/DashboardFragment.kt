@@ -7,6 +7,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -25,6 +28,7 @@ import com.example.bookreader.adapter.DashboardRecyclerAdapter
 import com.example.bookreader.model.Book
 import com.example.bookreader.util.ConnectionManager
 import org.json.JSONException
+import java.util.Collections
 import com.android.volley.toolbox.JsonObjectRequest as JsonObjectRequest
 
 class DashboardFragment : Fragment() {
@@ -37,6 +41,11 @@ class DashboardFragment : Fragment() {
     lateinit var progressLayout: RelativeLayout
 
    val bookInfoList = arrayListOf<Book>()
+    val  ratingComparator= Comparator<Book>
+    {
+        book1,book2->
+        book1.bookRating.compareTo((book2.bookRating),true)
+    }
 
 
 // You now have a list of 10 book titles in the 'bookList' ArrayList.
@@ -54,6 +63,7 @@ class DashboardFragment : Fragment() {
         //last boolean value will be passed.. false mean not one fragement permanmentaly added.
 
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+        setHasOptionsMenu(true)
 
         recyclerDashboard = view.findViewById(R.id.recyclDashboard);
         //Internet Check Is available
@@ -164,6 +174,26 @@ class DashboardFragment : Fragment() {
 
 
         return view
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+       inflater?.inflate(R.menu.menu_dashboard,menu)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+
+
+        val id=item?.itemId
+        if(id==R.id.action_sort)
+        {
+            Collections.sort(bookInfoList,ratingComparator)
+            bookInfoList.reverse()
+        }
+        recylerAdapter.notifyDataSetChanged()
+        return super.onOptionsItemSelected(item)
     }
 
 
