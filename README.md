@@ -27,7 +27,7 @@ BookReader is an Android application that allows users to explore a vast collect
 
 ## Video Demo
 
-To see a video demonstration of the app's features, click [here](https://drive.google.com/file/d/1tKsbH3HA2K5kfv7O3o-A27KvVhxS4xI-/view?usp=share_link).
+To see a video demonstration of the app's features, click [here](https://drive.google.com/file/d/1U17jHv_aVRVPNKwSB4BIkuAdPKlYTLzL/view?usp=share_link).
 
 ## Download APK
 
