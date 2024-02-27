@@ -1,6 +1,7 @@
 # BookReader Android App
 
 BookReader is an Android application that allows users to explore a vast collection of books from an external API. It provides features for sorting books by rating, viewing book details, and adding books to favorites. The app uses Volley for API requests and Room for managing favorite books.
+H
 
 ## Features
 
